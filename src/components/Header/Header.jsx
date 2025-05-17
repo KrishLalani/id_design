@@ -9,10 +9,17 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // Prevent body scrolling when menu is open
+    if (!isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    document.body.style.overflow = "auto";
   };
 
   useEffect(() => {
@@ -41,8 +48,25 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    // Clean up event listener and body style on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.body.style.overflow = "auto";
+    };
   }, []);
+
+  // Close menu when window is resized above mobile breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMenuOpen]);
 
   return (
     <header className="header">
@@ -54,6 +78,9 @@ const Header = () => {
             <span className="brand-sub">Design Studio</span>
           </span>
         </div>
+
+        {/* Conditional rendering for mobile overlay */}
+        {isMenuOpen && <div className="mobile-overlay" onClick={closeMenu}></div>}
 
         <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
           <a 
@@ -105,9 +132,6 @@ const Header = () => {
           )}
         </button>
       </nav>
-      
-      {/* Mobile overlay background */}
-      {isMenuOpen && <div className="mobile-overlay" onClick={closeMenu}></div>}
     </header>
   );
 };

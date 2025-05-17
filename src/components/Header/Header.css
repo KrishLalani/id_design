@@ -175,7 +175,7 @@ body {
   cursor: pointer;
   color: var(--text-main);
   padding: 0.5rem;
-  z-index: 20;
+  z-index: 110;
 }
 
 .menu-toggle svg {
@@ -191,6 +191,13 @@ body {
 /* Mobile overlay for menu background */
 .mobile-overlay {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 90;
 }
 
 /* Media Queries for Responsiveness */
@@ -245,13 +252,10 @@ body {
   
   .mobile-overlay {
     display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 90;
+  }
+  
+  .menu-toggle {
+    display: block;
   }
   
   .nav-links {
@@ -273,7 +277,7 @@ body {
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    z-index: 95;
+    z-index: 100;
     display: flex;
   }
   
@@ -298,15 +302,11 @@ body {
     font-size: 1rem;
     align-self: flex-start;
   }
-  
-  .menu-toggle {
-    display: block;
-  }
 }
 
 @media (max-width: 480px) {
   .floating-navbar {
-    width: 90%;
+    width: 100%;
     padding: 0.6rem 1rem;
   }
   
