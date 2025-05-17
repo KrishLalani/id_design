@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'BankGothic Md BT';
+  src: url('../../../public/fonts/Bank\ Gothic\ Light\ Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --accent-color: rgb(201, 191, 178);
+  --accent-dark: rgb(181, 171, 158);
+}
+
+h1, .floating-text, .font-heading {
+  font-family: 'BankGothic Md BT', sans-serif;
+}
+
+/* Accent Color */
+.text-accent {
+  color: var(--accent-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.hover\:bg-accent-dark:hover {
+  background-color: var(--accent-dark);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Animation Utility Classes */
+.animate-fadeIn {
+  animation: fadeIn 1.2s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 1.2s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 3s infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Text Styles */
+.text-primary {
+  color: #1F2937;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .floating-chair {
+    bottom: 80px; /* Higher position to avoid overlap with mobile nav */
+    right: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+  
+  .floating-chair {
+    bottom: 90px;
+    right: 10px;
+    transform: scale(0.85);
+  }
+}
+
+/* Floating Elements */
+.floating-chair {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  animation: float 4s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+
+.floating-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}

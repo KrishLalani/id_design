@@ -1,0 +1,26 @@
+/* Elegant loading animation for form submission */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(201, 191, 178, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(201, 191, 178, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(201, 191, 178, 0);
+  }
+}
+
+.button-loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Subtle hover effect for input fields */
+input:hover, textarea:hover {
+  border-color: rgb(201, 191, 178);
+}
