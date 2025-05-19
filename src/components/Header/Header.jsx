@@ -1,11 +1,13 @@
 // Header.jsx
 import React, { useState, useEffect } from "react";
+import QuoteForm from '../QuoteForm/QuoteForm';
 import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [quoteFormOpen, setQuoteFormOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +22,12 @@ const Header = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
+  };
+
+  const openQuoteForm = (e) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    setQuoteFormOpen(true);
+    closeMenu(); // Close the menu if it's open
   };
 
   useEffect(() => {
@@ -111,13 +119,12 @@ const Header = () => {
           >
             Contact
           </a>
-          <a 
-            href="#quote" 
+          <button 
             className="quote-button"
-            onClick={closeMenu}
+            onClick={openQuoteForm}
           >
             Get Quote
-          </a>
+          </button>
         </div>
 
         <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
@@ -131,6 +138,9 @@ const Header = () => {
             </svg>
           )}
         </button>
+
+        {/* Quote Form Modal */}
+        <QuoteForm isOpen={quoteFormOpen} onClose={() => setQuoteFormOpen(false)} />
       </nav>
     </header>
   );

@@ -159,6 +159,8 @@ body {
   transition: all var(--transition-speed) ease;
   white-space: nowrap;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
 }
 
 .quote-button:hover {
